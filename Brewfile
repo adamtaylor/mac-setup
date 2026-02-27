@@ -1,0 +1,7 @@
+cask "google-chrome"
+cask "iterm2"
+cask "slack"
+cask "spotify"
+cask "visual-studio-code"
+cask "1password"
+cask "alfred4"
