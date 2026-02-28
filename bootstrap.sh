@@ -1,7 +1,13 @@
 # Bootstrap script for setting up a new OS X machine
 
 # Install homebrew
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew &>/dev/null; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
+
+# Add homebrew to PATH
+echo 'eval "$(/opt/homebrew/bin/brew shellenv)"' >> ~/.zprofile
+eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Verify homebrew installation
 if command -v brew &>/dev/null; then
@@ -11,4 +17,4 @@ else
 fi
 
 # Install applications from Brewfile
-brew bundle
+brew bundle 
