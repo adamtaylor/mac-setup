@@ -5,6 +5,7 @@ cask "spotify"
 cask "visual-studio-code"
 cask "1password"
 cask "alfred"
+cask "docker"
 
 brew "git"
 brew "jq"
