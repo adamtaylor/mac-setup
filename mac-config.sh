@@ -16,6 +16,7 @@ defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 
 # Automatically hide and show the dock
 defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock magnification -bool true
 
 # Restart affected services to apply changes immediately
 killall SystemUIServer
