@@ -3,7 +3,7 @@
 echo "Configuring macOS settings..."
 
 # Show Bluetooth menu bar icon
-defaults write com.apple.controlcenter "NSStatusItem Visible Bluetooth" -bool true
+defaults -currentHost write com.apple.controlcenter Bluetooth -int 18
 
 # Disable natural scroll direction
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
