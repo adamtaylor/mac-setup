@@ -30,6 +30,7 @@ run_script() {
 }
 
 run_script "bootstrap.sh"
+run_script "git.sh"
 run_script "1password.sh"
 run_script "mac-config.sh"
 

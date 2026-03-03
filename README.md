@@ -31,6 +31,7 @@ Then run:
 |---|---|
 | `install.sh` | Top-level entry point — runs all scripts in order |
 | `bootstrap.sh` | Installs Homebrew, Brewfile packages, vim and shell config |
+| `git.sh` | Configures git, aliases, and global .gitignore |
 | `1password.sh` | Configures 1Password SSH agent |
 | `mac-config.sh` | Applies macOS system preferences |
 
@@ -39,4 +40,5 @@ Then run:
 A few things can't be automated and need to be done manually after running the scripts:
 
 - Sign in to **1Password** before running `1password.sh`
+- Sign in to the **App Store** before running `brew bundle` if any App Store apps are in the Brewfile
 - **Restart** your machine after running `mac-config.sh` for all system preference changes to take effect
