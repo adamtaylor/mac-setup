@@ -1,22 +1,5 @@
 #!/bin/bash
 
-# ┌──────────────────────────────────────────────┐
-# │  🍎  macOS Machine Bootstrap v1.0            │
-# ├──────────────────────────────────────────────┤
-# │  Author  :  Adam Taylor                      │
-# │  Version :  1.0                              │
-# │  Date    :  2026-03-03                       │
-# └──────────────────────────────────────────────┘
-
-echo "┌──────────────────────────────────────────────┐"
-echo "│  🍎  macOS Machine Bootstrap v1.0            │"
-echo "├──────────────────────────────────────────────┤"
-echo "│  Author  :  Adam Taylor                      │"
-echo "│  Version :  1.0                              │"
-echo "│  Date    :  2026-03-03                       │"
-echo "└──────────────────────────────────────────────┘"
-echo ""
-
 # ┌─────────────────────┐
 # │  🍺  Setup Homebrew │
 # └─────────────────────┘
@@ -41,7 +24,7 @@ eval "$(/opt/homebrew/bin/brew shellenv)"
 
 # Verify Homebrew installation
 if command -v brew &>/dev/null; then
-  echo "  ✓ Homebrew is installed: $(brew --version)"
+  echo "  ✓ Homebrew installed: $(brew --version)"
 else
   echo "  ✗ ERROR: Homebrew installation failed"
   exit 1
@@ -52,17 +35,16 @@ echo "  → Installing packages from Brewfile..."
 brew bundle
 echo ""
 
-# ┌───────────────────┐
-# │  🐚  Shell Config │
-# └───────────────────┘
+# ┌──────────────────┐
+# │  🛠️  Vim Config  │
+# └──────────────────┘
 
 echo "┌──────────────────┐"
-echo "│  🛠️   Vim Config  │"
+echo "│  🛠️  Vim Config  │"
 echo "└──────────────────┘"
 echo ""
 
-# Write ~/.vimrc
-echo "  → Configuring vim..."
+echo "  → Writing ~/.vimrc..."
 cat > ~/.vimrc <<'EOF'
 syntax on
 set number
@@ -76,43 +58,31 @@ EOF
 echo "  ✓ ~/.vimrc written"
 echo ""
 
+# ┌───────────────────┐
+# │  🐚  Shell Config │
+# └───────────────────┘
+
 echo "┌───────────────────┐"
 echo "│  🐚  Shell Config │"
 echo "└───────────────────┘"
 echo ""
 
-touch ~/.zshrc
+echo "  → Writing ~/.zshrc..."
+cat > ~/.zshrc <<'EOF'
+export EDITOR=vim
 
-# Fix compinit insecure files warning and enable completions
-echo "  → Configuring completions..."
+# 1Password SSH agent
+export SSH_AUTH_SOCK=~/.1password/agent.sock
 
-# Write fix into ~/.zshrc for all future sessions
-grep -qxF 'autoload -Uz compinit' ~/.zshrc || cat >> ~/.zshrc <<'EOF'
-
-# Initialise completions, silently ignoring insecure files
+# Completions (silently ignore insecure files from app bundles e.g. Docker, Ghostty)
 autoload -Uz compinit && compinit -u
+
+# Plugins
+source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Starship prompt (keep last)
+eval "$(starship init zsh)"
 EOF
-echo "  ✓ compinit configured"
-
-# Enable zsh-autosuggestions
-echo "  → Configuring autosuggestions..."
-grep -qxF 'source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh' ~/.zshrc \
-  || echo 'source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh' >> ~/.zshrc
-echo "  ✓ zsh-autosuggestions enabled"
-
-# Enable zsh-syntax-highlighting
-echo "  → Configuring syntax highlighting..."
-grep -qxF 'source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' ~/.zshrc \
-  || echo 'source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh' >> ~/.zshrc
-echo "  ✓ zsh-syntax-highlighting enabled"
-
-# Enable Starship (keep last)
-echo "  → Configuring Starship prompt..."
-grep -qxF 'eval "$(starship init zsh)"' ~/.zshrc \
-  || echo 'eval "$(starship init zsh)"' >> ~/.zshrc
-echo "  ✓ Starship enabled"
+echo "  ✓ ~/.zshrc written"
 echo ""
-
-echo "┌──────────────────────────────────────────────┐"
-echo "│  ✅  Bootstrap complete! Restart your shell. │"
-echo "└──────────────────────────────────────────────┘"

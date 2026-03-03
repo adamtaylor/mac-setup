@@ -1,25 +1,43 @@
 #!/bin/bash
 
-echo "Configuring macOS settings..."
+# ┌────────────────────┐
+# │  🖥️  macOS Config  │
+# └────────────────────┘
 
-# Show Bluetooth menu bar icon
+echo "┌────────────────────┐"
+echo "│  🖥️  macOS Config  │"
+echo "└────────────────────┘"
+echo ""
+
+# ── Menu Bar ──────────────────────────────────────
+echo "  → Configuring menu bar..."
+# Show Bluetooth icon
 defaults -currentHost write com.apple.controlcenter Bluetooth -int 18
+echo "  ✓ Menu bar configured"
 
+# ── Trackpad ──────────────────────────────────────
+echo "  → Configuring trackpad..."
 # Disable natural scroll direction
 defaults write NSGlobalDomain com.apple.swipescrolldirection -bool false
-
-# Enable trackpad tap to click (for current user)
+# Enable tap to click
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
 defaults write com.apple.AppleMultitouchTrackpad Clicking -bool true
 defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
 defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
+echo "  ✓ Trackpad configured"
 
-# Automatically hide and show the dock
+# ── Dock ──────────────────────────────────────────
+echo "  → Configuring dock..."
+# Auto-hide and enable magnification
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock magnification -bool true
+echo "  ✓ Dock configured"
 
-# Restart affected services to apply changes immediately
+# ── Apply Changes ─────────────────────────────────
+echo "  → Restarting affected services..."
 killall SystemUIServer
 killall Dock
-
-echo "Done. You may need to log out and back in for all changes to take effect."
+echo "  ✓ Services restarted"
+echo ""
+echo "  ℹ️  You may need to log out and back in for all changes to take effect."
+echo ""
