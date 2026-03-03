@@ -28,6 +28,7 @@ brew "awscli"
 brew "wget"
 brew "bat"
 brew "glow"
+brew "git-trim"
 
 # Custom Adzuna helper apps
 tap "adzuna/adzuna-ssm", "git@bitbucket.org:adzuna/adzuna-ssm-brew.git"
