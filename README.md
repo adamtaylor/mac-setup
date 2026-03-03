@@ -7,6 +7,7 @@ Scripts to bootstrap a new Mac with my preferred apps, tools, and configuration.
 - **Homebrew** — installs Homebrew and all packages, casks, and App Store apps from the `Brewfile`
 - **Shell** — writes a clean `~/.zshrc` with zsh-autosuggestions, zsh-syntax-highlighting, and Starship prompt
 - **Vim** — writes a minimal `~/.vimrc` with sane defaults
+- **Git** — configures global git settings with separate email identities for personal (`~/code/personal`) and work (`~/code/adzuna`) repos
 - **1Password** — configures the SSH agent socket and `~/.ssh/config`
 - **macOS** — applies system preferences for trackpad, dock, and menu bar
 
