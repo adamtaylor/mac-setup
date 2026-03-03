@@ -26,6 +26,8 @@ brew "mysql-client"
 brew "aws-sam-cli"
 brew "awscli"
 brew "wget"
+brew "bat"
+brew "glow"
 
 # Custom Adzuna helper apps
 tap "adzuna/adzuna-ssm", "git@bitbucket.org:adzuna/adzuna-ssm-brew.git"
