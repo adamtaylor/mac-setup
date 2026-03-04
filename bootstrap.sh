@@ -67,6 +67,13 @@ echo "│  🐚  Shell Config │"
 echo "└───────────────────┘"
 echo ""
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+
+# Copy aliases file
+echo "  → Installing ~/.aliases..."
+cp "$SCRIPT_DIR/shell-aliases" ~/.aliases
+echo "  ✓ ~/.aliases installed"
+
 echo "  → Writing ~/.zshrc..."
 cat > ~/.zshrc <<'EOF'
 export EDITOR=vim
@@ -80,6 +87,9 @@ autoload -Uz compinit && compinit -u
 # Plugins
 source $(brew --prefix)/share/zsh-autosuggestions/zsh-autosuggestions.zsh
 source $(brew --prefix)/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# Aliases
+[[ -f ~/.aliases ]] && source ~/.aliases
 
 # Starship prompt (keep last)
 eval "$(starship init zsh)"

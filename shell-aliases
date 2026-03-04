@@ -1,0 +1,6 @@
+# Utilities
+alias aliases="$EDITOR ~/.aliases"
+alias reload="source ~/.zshrc"
+
+# Dev specific
+alias vmup="adzuna-dev up -wait"
