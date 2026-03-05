@@ -33,6 +33,14 @@ defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock magnification -bool true
 echo "  ✓ Dock configured"
 
+# ── Hot Corners ───────────────────────────────────
+echo "  → Configuring hot corners..."
+# Top left -> mission control
+defaults write com.apple.dock wvous-tl-corner -int 2
+# Top right -> desktop
+defaults write com.apple.dock wvous-tr-corner -int 4
+echo "  ✓ Hot corners configured"
+
 # ── Apply Changes ─────────────────────────────────
 echo "  → Restarting affected services..."
 killall SystemUIServer
