@@ -29,6 +29,10 @@ brew "wget"
 brew "bat"
 brew "glow"
 brew "git-trim"
+brew "cpanminus"
+brew "opentofu"
+brew "terragrunt"
+brew "pre-commit"
 
 # Custom Adzuna helper apps
 tap "adzuna/adzuna-ssm", "git@bitbucket.org:adzuna/adzuna-ssm-brew.git"
