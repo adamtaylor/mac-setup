@@ -78,6 +78,9 @@ echo "  → Writing ~/.zshrc..."
 cat > ~/.zshrc <<'EOF'
 export EDITOR=vim
 
+# Tell Perl where to find SSL certs
+export PERL_LWP_SSL_CA_FILE=/etc/ssl/cert.pem
+
 # 1Password SSH agent
 export SSH_AUTH_SOCK=~/.1password/agent.sock
 
